@@ -1,0 +1,38 @@
+-- Steps to Configure Salesforce Developer Edition for Apex programming:
+
+1. Login:
+    - Search 'Salesforce Developer login' and login with your account.
+    - Open the console.
+
+2. Set Up Developer console:
+    - Click on the settings icon at right top and then selct developer console (it will open a new window).
+    - Then File > New > Apex Class.
+    - Enter nay valid name (Ex. first, second ... without extension).
+    - In the file, save the code: 
+    (Here my file name is 'second', so class name is also 'second'. Change according to yours).
+
+public class second {
+    public static void sendMail(String address, String subject, String body) {
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        String[] toAddresses = new String[]{address};  
+        mail.setToAddresses(toAddresses);
+        mail.setSubject(subject);
+        mail.setPlainTextBody(body);
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});  
+    }
+}
+    
+3. Debugging and message testing:
+    - Click Debug > Open Execute Anonymous Window.
+    - In the window, write the apex code:
+    (At the "recipients-addresses" field, write your email id).
+
+    String Addresses='recipients-addresses';
+	String subject='LP-2 assignment confirmation';
+	String body='Cloud Computing Assignment 3 implemented succssfully';
+	second.sendMail(Addresses,subject,body);
+
+    - You will see a succes message in logs.
+    - check your email for the mail (Sometimes in 'Spam').
+
+4. Sign Out.
