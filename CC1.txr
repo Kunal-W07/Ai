@@ -1,0 +1,36 @@
+-- Summary of Steps to Launch EC2 Instance and Deploy Webpage on IIS
+
+1. Launch EC2 Instance
+   - Sign in to AWS Management Console.
+   - Go to EC2 > Instances > Launch Instance.
+   - Choose Microsoft Windows Server 2019 Base AMI.
+   - Select instance type (e.g., t2.micro).
+   - Create/download new key pair (.pem file).
+   - In the networks settings, configure Security Group: Allow RDP (3389), HTTP (80), HTTPS (443) (tick the check boxes).
+   - Review and Launch.
+
+2. Connect to EC2 Instance
+   - Wait for status checks (2/2 passed).
+   - select the instance.
+   - Click Connect > RDP Client > Download Remote Desktop File.
+   - Get Password using .pem file.
+   - Use RDP file + password to connect via Remote Desktop.
+   - Wait for setup.
+
+3. Install IIS on EC2 Instance
+   - In the instance screen, Search server manager.
+   - Open Server Manager > Add roles and features.
+   - select Next upto Server Roles.
+   - Select Web Server (IIS) role in Feature and proceed with defaults.
+   - Complete installation and wait for server to be ready (optionally, refresh IIS server in server manager).
+   - Verify by browsing public IPv4 address of instance.
+
+4. Deploy Webpage on IIS
+   - Navigate to C:\inetpub\wwwroot.
+   - Place 'index.html' file inside the folder.
+   - Access webpage at http://<public-ip> or http://<public-ip>/index.html
+
+5. Terminate EC2 Instance
+   - In EC2 Dashboard, select instance.
+   - If Termination Protection is enabled, disable it.
+   - Right-click > Terminate Instance.
