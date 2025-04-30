@@ -26,12 +26,14 @@ goal = input("Enter goal node: ")
 open_list = [start]
 g = {start: 0}
 parent = {start: None}
+cost_to_goal = float('inf')  # Initialize cost to goal
 
 while open_list:
-    current = min(open_list, key=lambda x: g[x] + heuristic[x])
+    current = min(open_list, key=lambda x: g[x] + heuristic.get(x, 0))
     open_list.remove(current)
 
     if current == goal:
+        cost_to_goal = g[current]  # Store the cost to the goal
         break
 
     for neighbor in graph.get(current, {}):
@@ -48,3 +50,4 @@ while node:
     node = parent.get(node)
 path.reverse()
 print("Path:", path)
+print("Total Cost:", cost_to_goal)
